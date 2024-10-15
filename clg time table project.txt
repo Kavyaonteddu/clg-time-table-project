@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        input,
+        select,
+        button {
+            margin: 5px;
+            padding: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>College Time Table Management System</h1>
+    </header>
+    <main>
+        <div class="user-role">
+            <label for="role-select">Select Role:</label>
+            <select id="role-select">
+                <option value="admin">Admin</option>
+                <option value="faculty">Faculty</option>
+                <option value="student">Student</option>
+            </select>
+        </div>
+
+        <div class="schedule-creation">
+            <h2>Create Schedule</h2>
+            <form id="schedule-form">
+                <input type="text" id="course-name" placeholder="Course Name" required>
+                <input type="datetime-local" id="course-time" required>
+                <button type="submit">Add Course</button>
+            </form>
+        </div>
+
+        <div class="schedule-display">
+            <label for="role-select">Select course:</label>
+            <select id="role-select">
+                <option value="admin">Computer science</option>
+                <option value="faculty">Artifical intellegence</option>
+                <option value="student">Cyber security</option>
+            </select>
+            <h2>Class Schedule</h2>
+            <section id="schedule-container">
+                <h1>Schedule</h1>
+                <table id="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Course</th>
+                            <th>Room</th>
+                            <th>Faculty</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="schedule-body">
+
+                    </tbody>
+                </table>
+            </section>
+            <table id="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Computer science</th>
+                        <th>Time - 10:30</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule-body">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="attendance-tracking">
+            <h2>Attendance Tracking</h2>
+            <form id="attendance-form">
+                <input type="text" id="student-name" placeholder="Student Name" required>
+                <input type="text" id="course-attendance" placeholder="Course Name" required>
+                <button type="submit">Mark Attendance</button>
+            </form>
+        </div>
+
+        <div id="announcements">
+            <h2>Announcements</h2>
+            <ul id="announcement-list"></ul>
+        </div>
+    </main>
+    <h1 class="heading">Scheduling Conflict Resolution</h1>
+    <div class="schedule-container">
+        <table id="schedule-table">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Room</th>
+                </tr>
+            </thead>
+            <tbody id="schedule-body">
+
+            </tbody>
+        </table>
+    </div>
+    <button id="resolve-conflicts-btn">Resolve Conflicts</button>
+    <script>
+        const scheduleData = [{
+                day: "Monday",
+                time: "9:30 AM",
+                course: "Maths",
+                room: "Rm 101",
+                faculty: "Jyothi",
+                attendance: "35"
+            },
+            {
+                day: "Tuesday",
+                time: "10:00 AM",
+                course: "DAA",
+                room: "Rm 313",
+                faculty: "Krishnaprasad",
+                attendance: "35"
+            },
+            {
+                day: "Wednesday",
+                time: "9:30 AM",
+                course: "Devops",
+                room: "Rm 313",
+                faculty: "Mounika"
+            },
+            {
+                day: "Thursday",
+                time: "10:00 AM",
+                course: "Computer networks",
+                room: "Rm 315",
+                faculty: "Subramanyam"
+            },
+            {
+                day: "Friday",
+                time: "11:00 AM",
+                course: "Operating system",
+                room: "Rm 315",
+                faculty: "Upendar"
+            },
+            {
+                day: "Saturday",
+                time: "10:00 AM",
+                course: "DBMS",
+                room: "Rm 307",
+                faculty: "Prasad"
+            },
+        ];
+
+        const announcementData = [{
+                message: "Schedule updated for Monday",
+                date: "2024-02-20"
+            },
+            {
+                message: "New course added: History 506",
+                date: "2024-02-15"
+            },
+        ];
+
+        const scheduleBody = document.getElementById("schedule-body");
+        scheduleData.forEach((schedule) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+        <td>${schedule.day}</td>
+        <td>${schedule.time}</td>
+        <td>${schedule.course}</td>
+        <td>${schedule.room}</td>
+        <td>${schedule.faculty}</td>
+    `;
+            scheduleBody.appendChild(row);
+        });
+        const announcementList = document.getElementById("announcement-list");
+        announcementData.forEach((announcement) => {
+            const item = document.createElement("li");
+            item.innerHTML = `
+        <p>${announcement.message} (${announcement.date})</p>
+    `;
+            announcementList.appendChild(item);
+        });
+    </script>
+</body>
+
+</html>
